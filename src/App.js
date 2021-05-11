@@ -9,7 +9,6 @@ import Layout from "./layout/Layout";
 import Signin from "./auth/Signin";
 import { useAuth } from "./auth/AuthContext";
 import { makeStyles } from "@material-ui/core/styles";
-// import BackgroundImage from "./images/background.png";
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -17,24 +16,23 @@ const useStyles = makeStyles((theme) => ({
       margin: 0,
       padding: 0,
       listStyle: 'none',
-      color: "black",
     },
     a: {
       textDecoration: "none",
-      color: "black",
+      color: "#000",
       '&:hover': {
         textDecoration: "none",
+        color: "#4c95dd",
       }
     },
     li: {
       textDecoration: "none"
+
     },
   },
 
   wrapper: {
-    // backgroundImage: `url(${BackgroundImage})`,
-    backgroundImage: "linear-gradient(to right, #f7dadf, #D4D3DD)",
-    backgroundSize: "cover",
+    background: theme.palette.gradient.background,
   },
 }));
 

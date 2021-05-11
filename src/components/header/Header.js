@@ -1,108 +1,69 @@
 import React from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
+import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import UserProfileMenu from "./PopupMenu/UserProfileMenu";
 import { useLayout } from "../../layout/LayoutContext";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
+import Setting from "./PopupMenu/Setting";
+import clsx from 'clsx';
+import SearchInput from "../search/SearchInput";
+import Message from "./PopupMenu/Message";
+import Notification from "./PopupMenu/Notification";
+
 
 const useStyles = makeStyles((theme) => ({
+
   appBar: {
-    background:
-      "linear-gradient(to right, rgba(255, 255, 255, 0.7) 21%, rgba(255, 255, 255, 0.5));",
+    position: "sticky",
+    width: "100%",
+    top: 0,
+    background: "rgba(255,255,255,0)",
+    backdropFilter: "blur(5px)",
+    boxShadow: "1px 1px 8px #9e9e9e",
+    padding: theme.spacing(2, 0),
     zIndex: theme.zIndex.drawer + 1,
+
+    transition: theme.transitions.create(['width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+
+
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    color: theme.palette.primary.main,
-  },
-  title: {
-    flexGrow: 1,
-    color: theme.palette.blackColor.main,
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    border: "1px solid " + theme.palette.inputBorderColor.main,
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
+
+  headerItems: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: theme.palette.primary.main,
+    justifyContent: "space-between",
   },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
+
+
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-  const { toggleSidebar } = useLayout();
+  const { open } = useLayout();
+
   return (
-    <AppBar position="absolute" className={classes.appBar}>
-      <Toolbar>
+    <nav
+      position="fixed"
 
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-          onClick={() => toggleSidebar()}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h4" className={classes.title}>
-          Site Title
-        </Typography>
+      className={clsx(classes.appBar, {
+        [classes.appBarShift]: open,
+        [classes.appBarShiftClose]: !open,
 
+      })}
+    >
 
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ "aria-label": "search" }}
-          />
-        </div>
+      <Toolbar className={classes.headerItems}>
+        <SearchInput />
+
         <div>
+          <Notification />
+          <Message />
+          <Setting />
           <UserProfileMenu />
         </div>
 
       </Toolbar>
-    </AppBar>
+    </nav>
   );
 }

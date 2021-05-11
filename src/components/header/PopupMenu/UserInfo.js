@@ -33,6 +33,8 @@ const usedStyle = makeStyles((theme) => ({
     },
     userLogin: {
         borderRadius: "8px",
+        border: "1px solid " + theme.palette.iconBorderColor.main,
+
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(5),
         padding: theme.spacing(1.25, 2.25),
@@ -48,10 +50,11 @@ export default function UserInfo() {
     return (
 
         <div className={classes.menuItems}>
+
             <Avatar alt="Remy Sharp" src={userAvtarImage} className={classes.large} />
 
             <Link className={classes.userLink} component="a" variant="h6">
-                Mason Protesters
+                Vijay Kumar
             </Link>
 
             <Typography className={classes.userEmail} variant="body1">

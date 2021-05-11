@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
 import UserInfo from "./UserInfo";
 import UserOtherAc from "./UserOtherAc";
@@ -18,16 +17,24 @@ const useStyles = makeStyles((theme) => ({
   },
   menuBody: {
     width: 300,
-    background: theme.palette.background.default,
+    background: theme.palette.glass.main,
+    backdropFilter: "blur(8px)",
     padding: theme.spacing(3.9),
-  },
-  list: {
-
   },
 
   iconButton: {
-    border: "1px solid " + theme.palette.iconBorderColor.main,
     marginLeft: theme.spacing(2),
+    padding: 5,
+    boxShadow: theme.palette.boxShadow.boxShadow,
+    borderRadius:10,
+    overflow:"hidden",
+  },
+  profileImg: {
+    width: 40,
+    height: 40,
+    borderRadius:10,
+   
+    
   },
 }));
 
@@ -52,7 +59,13 @@ export default function UserProfileMenu() {
         className={classes.iconButton}
         size="medium"
       >
-        <AccountCircleIcon />
+      
+          <img
+          className={classes.profileImg}
+            src={userImage3}
+            alt="img"
+            width="50px"
+          />
       </IconButton>
       <Menu
         id="menu-appbar"

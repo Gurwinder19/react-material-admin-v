@@ -17,6 +17,7 @@ const usedStyle = makeStyles((theme) => ({
     userLink: {
         display: "block",
         cursor: "pointer",
+        color:"#000",
         '&:hover': {
            textDecoration: "none",
         }
@@ -37,6 +38,7 @@ const usedStyle = makeStyles((theme) => ({
     },
 
     userTitle: {
+        
         display: "flex",
         justifyContent: "space-between",
     }
