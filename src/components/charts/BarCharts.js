@@ -45,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
   finalPrice: {
     color: theme.palette.fontColor.main,
+    textAlign: 'right',
+     fontWeight: '600',
   },
 
   subTitle: {
@@ -70,7 +72,7 @@ export default function BarCharts() {
         </div>
 
         <div>
-          <Typography className={classes.finalPrice} component="h4" variant='h5' style={{ textAlign: 'right', fontWeight: '600' }}>$ 154K
+          <Typography className={classes.finalPrice} component="h4" variant='h5'>$ 154K
           </Typography>
           <Typography className={classes.pricing}>
             <span style={{ color: theme.palette.success.main }} >+ 1.5% </span>than last week

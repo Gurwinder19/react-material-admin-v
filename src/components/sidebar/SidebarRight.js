@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         position: "relative",
         whiteSpace: "nowrap",
-        // color: "white",
         background: theme.palette.glass.main,
         backdropFilter: "blur(8px)",
         width: drawerWidth,

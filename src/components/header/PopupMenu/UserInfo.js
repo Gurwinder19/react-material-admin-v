@@ -34,7 +34,6 @@ const usedStyle = makeStyles((theme) => ({
     userLogin: {
         borderRadius: "8px",
         border: "1px solid " + theme.palette.iconBorderColor.main,
-
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(5),
         padding: theme.spacing(1.25, 2.25),

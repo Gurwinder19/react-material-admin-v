@@ -1,5 +1,5 @@
 // import classes from '*.module.css';
-import { Card, makeStyles } from '@material-ui/core';
+import { Card, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 // import useStyles from '../cards/style';
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 20,
   },
   
-  Title: {
+  PieHeading: {
     fontWeight: 600,
     color: theme.palette.fontColor.main,
     margin: 0,
@@ -53,9 +53,10 @@ const PieChart = () => {
 
   return (
     <Card className={classes.Card}>
-      <div className={classes.Heading}>
+      {/* <div className={classes.Heading}>
         <h1 className={classes.Title}>Pie Chart</h1>
-      </div>
+      </div> */}
+      <Typography className={classes.PieHeading} component="h4" variant='h5'>Pie Chart</Typography>
       <Pie data={data} />
     </Card>
   );

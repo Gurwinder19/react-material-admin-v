@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     menuBody: {
         width: 300,
         background: theme.palette.glass.main,
+        backdropFilter:"blur(8px)",
         padding: theme.spacing(3.9),
     },
     list: {

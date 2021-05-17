@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "flex-start",
         padding: "8px 16px",
         textDecoration: "none",
-
         ...theme.mixins.toolbar,
 
     },
@@ -127,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
 function Sidebar(props) {
     var classes = useStyles();
     var theme = useTheme();
+    var rightDrawerType = "permanent";
 
     var [drawerPermanent, setDrawerPermanent] = useState(true);
     const { openFixed, toggleFixedSidebar } = useLayout();
@@ -141,7 +141,7 @@ function Sidebar(props) {
     return (
 
         <Drawer className={classes.root}
-            variant="permanent"
+            variant={rightDrawerType}
             classes={{
                 paper: clsx(classes.drawerPaper, openFixed && classes.drawerPaperClose),
             }}
@@ -158,7 +158,7 @@ function Sidebar(props) {
                     {openFixed ? <MenuIcon /> : <CloseIcon />}
                 </IconButton>
                 <Typography variant="h4" className={classes.title}>
-                    Site Title
+                    Site Title1
                  </Typography>
             </div>
             <List>
@@ -250,12 +250,17 @@ function Sidebar(props) {
     function drawerTypeChange() {
         var windowWidth = window.innerWidth;
         var breakpointWidth = theme.breakpoints.values.md;
+        console.log("resized");
+        console.log(breakpointWidth);
         var isSmallScreen = windowWidth < breakpointWidth;
 
         if (isSmallScreen && drawerPermanent) {
             setDrawerPermanent(false);
+            toggleFixedSidebar();
+            rightDrawerType = "temporary";
         } else if (!isSmallScreen && !drawerPermanent) {
             setDrawerPermanent(true);
+            rightDrawerType = "permanent";
         }
     }
 }
