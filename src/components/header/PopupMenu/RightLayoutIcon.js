@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import SettingsIcon from '@material-ui/icons/Settings';
 import { useLayout } from "../../../layout/LayoutContext";
+import { BsLayoutSidebar } from "react-icons/bs";
 
 
 
@@ -16,20 +16,25 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.default,
     padding: theme.spacing(3.9),
   },
+  list: {
 
+  },
 
   iconButton: {
     boxShadow: theme.palette.boxShadow.boxShadow,
-    marginLeft: theme.spacing(2),
     borderRadius: "10px",
     color: theme.palette.fontColor.main,
-
+    marginLeft: theme.spacing(2),
+    display: 'none',
+    [theme.breakpoints.down("md")]: {
+        display: 'block',
+    },
   },
 }));
 
-export default function Setting() {
+export default function RightLayoutIcon() {
   const classes = useStyles();
-  const { toggleRightSidebar } = useLayout();
+  const { toggleFixedSidebar } = useLayout();
 
 
   return (
@@ -38,14 +43,14 @@ export default function Setting() {
         aria-label="account of current user"
         aria-controls="menu-appbar"
         aria-haspopup="true"
-        onClick={toggleRightSidebar}
+        onClick={toggleFixedSidebar}
         color="primary"
         className={classes.iconButton}
         size="medium"
       >
-        <SettingsIcon />
+        <BsLayoutSidebar />
       </IconButton>
-     
+
 
     </>
   );

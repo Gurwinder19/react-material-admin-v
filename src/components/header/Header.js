@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import SearchInput from "../search/SearchInput";
 import Message from "./PopupMenu/Message";
 import Notification from "./PopupMenu/Notification";
+import RightLayoutIcon from "./PopupMenu/RightLayoutIcon";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   headerItems: {
     display: "flex",
     justifyContent: "space-between",
+    flexWrap: "wrap",
   },
 
 
@@ -61,6 +63,7 @@ export default function ButtonAppBar() {
           <Message />
           <Setting />
           <UserProfileMenu />
+          <RightLayoutIcon />
         </div>
 
       </Toolbar>

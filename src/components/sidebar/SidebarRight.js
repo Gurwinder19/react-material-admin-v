@@ -13,6 +13,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
+import Close from "../header/PopupMenu/Close";
 
 const drawerWidth = 240;
 
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
         position: "absolute",
         right: 0,
         height: "100vh",
+        zIndex: 9999,
     },
 
     toolbarIcon: {
@@ -84,6 +86,13 @@ const useStyles = makeStyles((theme) => ({
     fixedHeight: {
         height: 240,
     },
+
+    closeParent: {
+        display: "flex",
+        justifyContent: "flex-end",
+        padding: theme.spacing(0, 1.5)
+    },
+
     drawerBackButton: {
         marginTop: theme.spacing(0.5),
         marginLeft: 18,
@@ -99,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 function SidebarRight(props) {
     var classes = useStyles();
     var theme = useTheme();
-
+       
     var [drawerPermanent, setDrawerPermanent] = useState(true);
     const { openRight } = useLayout();
 
@@ -117,9 +126,14 @@ function SidebarRight(props) {
                 paper: clsx(classes.drawerPaper, !openRight && classes.drawerPaperClose),
             }}
             open={openRight}
-        >
+                 >
+
 
             <List>
+                <div className={classes.closeParent}>
+                    <Close />
+                </div>
+
                 <ListItem button>
                     <ListItemIcon>
                         <DashboardIcon />

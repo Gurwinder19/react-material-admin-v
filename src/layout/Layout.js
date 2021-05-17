@@ -24,7 +24,7 @@ function Layout(props) {
   var classes = useStyles();
   return (
     <div className={classes.root}>
-      <Sidebar></Sidebar>
+      <Sidebar />
       <main className={classes.content}>
         <Header />
         <div className={classes.mainLayout}>

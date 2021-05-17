@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import SettingsIcon from '@material-ui/icons/Settings';
 import { useLayout } from "../../../layout/LayoutContext";
+import { GrClose } from "react-icons/gr";
 
 
 
@@ -16,18 +16,19 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.default,
     padding: theme.spacing(3.9),
   },
+  list: {
 
+  },
 
   iconButton: {
     boxShadow: theme.palette.boxShadow.boxShadow,
-    marginLeft: theme.spacing(2),
     borderRadius: "10px",
     color: theme.palette.fontColor.main,
 
   },
 }));
 
-export default function Setting() {
+export default function Close() {
   const classes = useStyles();
   const { toggleRightSidebar } = useLayout();
 
@@ -43,7 +44,7 @@ export default function Setting() {
         className={classes.iconButton}
         size="medium"
       >
-        <SettingsIcon />
+        <GrClose />
       </IconButton>
      
 

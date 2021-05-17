@@ -21,15 +21,39 @@ var settings = {
   slidesToScroll: 1,
   autoplay: true,
   centerPadding: 20,
+
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+      }
+    }
+  ]
+
+
+
 };
 
 const useStyles = makeStyles({
-  
+
   slideBox: {
     padding: theme.spacing(0, 3.125),
-    margin:theme.spacing(1, 0),
+    margin: theme.spacing(1, 0),
   },
-  
+
   sliderWrapper: {
     background: 'red',
   },
