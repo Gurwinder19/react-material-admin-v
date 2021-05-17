@@ -1,12 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import UserOtherAc from "./UserOtherAc";
 import userImage2 from '../../../images/user2.png';
 import userImage3 from '../../../images/user3.png';
 import userImage4 from '../../../images/user4.png';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import MenuButton from './MenuButton';
 
 
 
@@ -21,17 +21,7 @@ const useStyles = makeStyles((theme) => ({
         backdropFilter:"blur(8px)",
         padding: theme.spacing(3.9),
     },
-    list: {
-
-    },
-
-    iconButton: {
-        boxShadow: theme.palette.boxShadow.boxShadow,
-        marginLeft: theme.spacing(2),
-        borderRadius: "10px",
-        color: theme.palette.fontColor.main,
-
-    },
+   
 }));
 
 export default function Notification() {
@@ -39,24 +29,16 @@ export default function Notification() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget);
+        setTimeout(setAnchorEl(event.currentTarget), 200);
+        console.log("abc")
     };
     const handleClose = (event) => {
         setAnchorEl(null);
+        console.log("test")
     };
     return (
         <>
-            <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="primary"
-                className={classes.iconButton}
-                size="medium"
-            >
-                <NotificationsIcon />
-            </IconButton>
+           <MenuButton icon={<NotificationsIcon />} label="Notifications" onclick={handleMenu} />
             <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}

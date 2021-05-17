@@ -18,14 +18,13 @@ export default function AuthProvider({ children }) {
         setLoggedIn(true);
         setLoading(false);
         resolve();
-      }, 2000);
+      }, 1000);
     });
   }
 
   function logOut(history) {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
-    history.push("/signin");
   }
 
   return (

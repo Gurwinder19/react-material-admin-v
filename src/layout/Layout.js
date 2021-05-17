@@ -4,7 +4,6 @@ import useStyles from "./styles";
 import Header from "../components/header/Header";
 import Sidebar from "../components/sidebar/Sidebar";
 import SidebarRight from "../components/sidebar/SidebarRight";
-import FixedSidebar from "../components/sidebar/FixedSidebar";
 //pages
 import Dashboard from "../pages/Dashboard";
 import Order from "../pages/Order";
@@ -46,7 +45,6 @@ function Layout(props) {
           </Switch>
         </div>
       </main>
-      <FixedSidebar />
       <SidebarRight />
     </div>
   );

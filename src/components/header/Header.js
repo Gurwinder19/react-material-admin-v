@@ -5,10 +5,8 @@ import UserProfileMenu from "./PopupMenu/UserProfileMenu";
 import { useLayout } from "../../layout/LayoutContext";
 import Setting from "./PopupMenu/Setting";
 import clsx from 'clsx';
-// import SearchInput from "../search/SearchInput";
 import Message from "./PopupMenu/Message";
 import Notification from "./PopupMenu/Notification";
-import RightLayoutIcon from "./PopupMenu/RightLayoutIcon";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.glass.main,
     backdropFilter: "blur(8px)",
     boxShadow: "1px 1px 8px #9e9e9e",
-    padding: theme.spacing(2, 0),
+    padding: theme.spacing(1, 0),
     zIndex: theme.zIndex.drawer + 1,
 
     transition: theme.transitions.create(['width'], {
@@ -55,13 +53,12 @@ export default function ButtonAppBar() {
     >
 
       <Toolbar className={classes.headerItems}>
-        {/* <SearchInput /> */}
 
         <Notification />
         <Message />
         <Setting />
         <UserProfileMenu />
-        <RightLayoutIcon />
+       
 
 
       </Toolbar>

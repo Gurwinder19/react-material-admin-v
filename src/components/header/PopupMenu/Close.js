@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.palette.boxShadow.boxShadow,
     borderRadius: "10px",
     color: theme.palette.fontColor.main,
-
+    fontSize: "1.2rem",
+    padding: theme.spacing(1),
   },
 }));
 
@@ -46,7 +47,7 @@ export default function Close() {
       >
         <GrClose />
       </IconButton>
-     
+
 
     </>
   );

@@ -1,6 +1,8 @@
 import { Avatar, Button, makeStyles, Typography, Link } from '@material-ui/core';
 import React from 'react'
+import { useAuth } from '../../../auth/AuthContext';
 import userAvtarImage from '../../../images/user.jpg';
+
 
 
 const usedStyle = makeStyles((theme) => ({
@@ -45,7 +47,7 @@ const usedStyle = makeStyles((theme) => ({
 
 export default function UserInfo() {
     const classes = usedStyle();
-
+    const { logOut } = useAuth();
     return (
 
         <div className={classes.menuItems}>
@@ -60,7 +62,7 @@ export default function UserInfo() {
                 vk.gwebs@gmail.com
             </Typography>
 
-            <Button className={classes.userLogin} variant="contained" size="large" color="primary">Sign-Out</Button>
+            <Button className={classes.userLogin} variant="contained" size="large" color="primary"  onClick={logOut}>Sign-Out</Button>
         </div>
     )
 };

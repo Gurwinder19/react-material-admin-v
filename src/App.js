@@ -82,7 +82,7 @@ function App() {
         {...rest}
         render={(props) =>
           isLoggedIn && restricted ? (
-            <Redirect to="/dashboard" />
+            <Redirect to="/app/dashboard" />
           ) : (
             <Component {...props} />
           )
