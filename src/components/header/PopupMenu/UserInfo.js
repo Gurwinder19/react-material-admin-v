@@ -20,19 +20,20 @@ const usedStyle = makeStyles((theme) => ({
 
     userLink: {
         cursor: "pointer",
-        color: 'black',
+        color: theme.palette.fontColor.main,
         marginTop: theme.spacing(2.5),
 
         "&:hover": {
             textDecoration: "none",
-            color: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
         }
 
     },
     userEmail: {
-        color: theme.palette.primary.main,
+        color: theme.palette.fontColor.main,
 
     },
+
     userLogin: {
         borderRadius: "8px",
         border: "1px solid " + theme.palette.iconBorderColor.main,
@@ -40,6 +41,11 @@ const usedStyle = makeStyles((theme) => ({
         marginBottom: theme.spacing(5),
         padding: theme.spacing(1.25, 2.25),
         textTransform: "capitalize",
+
+        "&:hover": {
+            textDecoration: "none",
+            color: theme.palette.secondary.main,
+        }
     },
 
 
@@ -52,7 +58,7 @@ export default function UserInfo() {
 
         <div className={classes.menuItems}>
 
-            <Avatar alt="Remy Sharp" src={userAvtarImage} className={classes.large} />
+            <Avatar alt="userImage" src={userAvtarImage} className={classes.large} />
 
             <Link className={classes.userLink} component="a" variant="h6">
                 Vijay Kumar

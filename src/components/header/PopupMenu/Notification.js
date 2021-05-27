@@ -11,15 +11,13 @@ import MenuButton from './MenuButton';
 
 
 const useStyles = makeStyles((theme) => ({
-    headerMenu: {
-        marginTop: theme.spacing(7),
-
-    },
+   
     menuBody: {
         width: 300,
         background: theme.palette.glass.main,
         backdropFilter:"blur(8px)",
         padding: theme.spacing(3.9),
+        marginTop: theme.spacing(2.5),
     },
    
 }));
@@ -30,11 +28,9 @@ export default function Notification() {
     const open = Boolean(anchorEl);
     const handleMenu = (event) => {
         setTimeout(setAnchorEl(event.currentTarget), 200);
-        console.log("abc")
     };
     const handleClose = (event) => {
         setAnchorEl(null);
-        console.log("test")
     };
     return (
         <>
@@ -43,7 +39,7 @@ export default function Notification() {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                    vertical: "top",
+                    vertical: "bottom",
                     horizontal: "right",
                 }}
                 keepMounted

@@ -11,18 +11,17 @@ import MenuButton from "./MenuButton";
 
 
 const useStyles = makeStyles((theme) => ({
-    headerMenu: {
-        marginTop: theme.spacing(7),
-
-    },
+   
     menuBody: {
         width: 300,
         background: theme.palette.glass.main,
-        backdropFilter:"blur(8px)",
+        backdropFilter: "blur(8px)",
         padding: theme.spacing(3.9),
+        marginTop: theme.spacing(2.5),
+
     },
 
-  
+
 }));
 
 export default function Message() {
@@ -37,14 +36,14 @@ export default function Message() {
     };
     return (
         <>
-          <MenuButton icon={<MailOutlineIcon />} label="Message" onclick={handleMenu} />
-           
+            <MenuButton icon={<MailOutlineIcon />} label="Message" onclick={handleMenu} />
+
 
             <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                    vertical: "top",
+                    vertical: "bottom",
                     horizontal: "right",
                 }}
                 keepMounted

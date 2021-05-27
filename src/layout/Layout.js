@@ -14,6 +14,8 @@ import OnlineStore from "../pages/OnlineStore";
 import FormsTables from "../pages/FormsTables";
 import UiComponents from "../pages/UiComponents";
 import Collections from "../pages/Collections";
+import DashboardTwo from "../pages/DashboardTwo";
+import OrderDetails from "../pages/OrderDetails";
 
 
 
@@ -34,7 +36,9 @@ function Layout(props) {
               render={() => <Redirect to="/app/dashboard" />}
             />
             <Route path="/app/dashboard" component={Dashboard} />
+            <Route path="/app/dashboardTwo" component={DashboardTwo} />
             <Route path="/app/Order" component={Order} />
+            <Route path="/app/OrderDetails" component={OrderDetails} />
             <Route path="/app/Customer" component={Customer} />
             <Route path="/app/Menus" component={Menus} />
             <Route path="/app/Analysis" component={Analysis} />

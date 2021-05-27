@@ -6,9 +6,6 @@ import clsx from "clsx";
 import { useTheme } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/styles";
 import { useLayout } from "../../layout/LayoutContext";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PeopleIcon from "@material-ui/icons/People";
@@ -16,12 +13,14 @@ import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
-// import { Divider } from "@material-ui/core";
+import ParentLink from "./ParentLink";
+import NavLink from "./navLink";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+
+
   drawerToolbar: {
     width: "100%",
     display: "flex",
@@ -30,33 +29,15 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     alignItems: "center",
     justifyContent: "flex-start",
-    padding: "8px 16px",
+    padding: "8px 10px",
     textDecoration: "none",
 
     ...theme.mixins.toolbar,
 
   },
-  toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
-  },
-
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
 
   menuButton: {
     marginRight: theme.spacing(2.5),
-
-
   },
 
   title: {
@@ -67,10 +48,6 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
 
-
-  menuButtonHidden: {
-    display: "none",
-  },
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
@@ -93,35 +70,17 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9),
     },
   },
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
+
+
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
   },
-  fixedHeight: {
-    height: 240,
-  },
-  drawerBackButton: {
-    marginTop: theme.spacing(0.5),
-    marginLeft: 18,
-    [theme.breakpoints.only("sm")]: {
-      marginTop: theme.spacing(0.625),
-    },
 
-  },
-  // uiPage:{
-  //   padding:theme.spacing(2),
-  // }
+
+
 }));
 
 function Sidebar(props) {
@@ -130,6 +89,15 @@ function Sidebar(props) {
 
   var [drawerPermanent, setDrawerPermanent] = useState(true);
   const { open, toggleSidebar } = useLayout();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
+  const closeAccordion = (panel) => {
+    setExpanded(false);
+  };
 
   useEffect(function () {
     window.addEventListener("resize", drawerTypeChange);
@@ -138,6 +106,7 @@ function Sidebar(props) {
       window.removeEventListener("resize", drawerTypeChange);
     };
   });
+
   return (
     <Drawer
       variant="permanent"
@@ -148,7 +117,6 @@ function Sidebar(props) {
     >
       <div className={classes.drawerToolbar}>
         <IconButton
-          edge="start"
           className={classes.menuButton}
           color="inherit"
           aria-label="menu"
@@ -162,97 +130,57 @@ function Sidebar(props) {
       </div>
 
       <List>
-        <Link to="/app/Dashboard">
-          <ListItem button>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-        </Link>
+        <div className={classes.root}>
+          <ParentLink icon={<DashboardIcon />} title="Dashboard" expanded={expanded} id="panel1" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/Dashboard" icon={<DashboardIcon />} title="Dashboard 1" ></NavLink>
+            <NavLink link="/app/DashboardTwo" icon={<DashboardIcon />} title="Dashboard 2" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/Order">
-          <ListItem button>
-            <ListItemIcon>
-              <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Orders" />
-          </ListItem>
-        </Link>
+          <ParentLink icon={<ShoppingCartIcon />} title="Order" expanded={expanded} id="panel2" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/OrderList" icon={<ShoppingCartIcon />} title="OrderList" ></NavLink>
+            <NavLink link="/app/OrderDetails" icon={<ShoppingCartIcon />} title="OrderDetails" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/Menus">
-          <ListItem button>
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Menus" />
-          </ListItem>
-        </Link>
+          <ParentLink icon={<BarChartIcon />} title="Customer" expanded={expanded} id="panel3" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/Customer" icon={<BarChartIcon />} title="Customer List" ></NavLink>
+            <NavLink link="/app/Customer" icon={<BarChartIcon />} title="Members" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/Customer">
-          <ListItem button>
-            <ListItemIcon>
-              <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Customer" />
-          </ListItem>
-        </Link>
+          <ParentLink icon={<PeopleIcon />} title="Menus" expanded={expanded} id="panel4" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/Menus" icon={<PeopleIcon />} title="Add New Menus" ></NavLink>
+            <NavLink link="/app/Menus" icon={<PeopleIcon />} title="Menus List" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/Analysis">
-          <ListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Analysis" />
-          </ListItem>
-        </Link>
+          <ParentLink icon={<LayersIcon />} title="Analysis" expanded={expanded} id="panel5" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/Analysis" icon={<LayersIcon />} title="Analysis" ></NavLink>
+            <NavLink link="/app/Analysis" icon={<LayersIcon />} title="Analysis 2" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/OnlineStore">
-          <ListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Online Store" />
-          </ListItem>
-        </Link>
+          <ParentLink icon={<LayersIcon />} title="Online Store" expanded={expanded} id="panel6" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/OnlineStore" icon={<PeopleIcon />} title="Store 1" ></NavLink>
+            <NavLink link="/app/OnlineStore" icon={<PeopleIcon />} title="Store 2" ></NavLink>
+          </ParentLink>
 
-        {/* <Divider />
-        <Typography className={classes.uiPage}>
-          Ui and Pages
-        </Typography> */}
+          <ParentLink icon={<LayersIcon />} title="Collections" expanded={expanded} id="panel7" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/Collections" icon={<PeopleIcon />} title="Collections" ></NavLink>
+            <NavLink link="/app/Collections" icon={<PeopleIcon />} title="Collections 1" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/Collections">
-          <ListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Collections" />
-          </ListItem>
-        </Link>
+          <ParentLink icon={<LayersIcon />} title="UiComponents" expanded={expanded} id="panel8" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/UiComponents" icon={<PeopleIcon />} title="Components 1" ></NavLink>
+            <NavLink link="/app/UiComponents" icon={<PeopleIcon />} title="UiComponents 2" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/UiComponents">
-          <ListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Ui & Components" />
-          </ListItem>
-        </Link>
+          <ParentLink icon={<LayersIcon />} title="FormsTables" expanded={expanded} id="panel9" handleChange={(panel) => handleChange(panel)}>
+            <NavLink link="/app/FormsTables" icon={<PeopleIcon />} title="Table 1" ></NavLink>
+            <NavLink link="/app/FormsTables" icon={<PeopleIcon />} title="Table 2" ></NavLink>
+          </ParentLink>
 
-        <Link to="/app/FormsTables">
-          <ListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary=" Forms & Tables" />
-          </ListItem>
-        </Link>
-
-
-
+        </div>
       </List>
     </Drawer>
   );
+
   function drawerTypeChange() {
     var windowWidth = window.innerWidth;
     var breakpointWidth = theme.breakpoints.values.md;
