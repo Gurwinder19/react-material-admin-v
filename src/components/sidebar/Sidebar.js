@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
-import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import clsx from "clsx";
 import { useTheme } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/styles";
-import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { useLayout } from "../../layout/LayoutContext";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -16,16 +14,27 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
+import Typography from "@material-ui/core/Typography";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Link } from "react-router-dom";
+// import { Divider } from "@material-ui/core";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   drawerToolbar: {
+    width: "100%",
+    display: "flex",
+    position: "relative",
+    boxSizing: "border-box",
+    textAlign: "left",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    padding: "8px 16px",
+    textDecoration: "none",
+
     ...theme.mixins.toolbar,
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
+
   },
   toolbarIcon: {
     display: "flex",
@@ -43,15 +52,30 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+
+  menuButton: {
+    marginRight: theme.spacing(2.5),
+
+
+  },
+
+  title: {
+    flexGrow: 1,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+
+
   menuButtonHidden: {
     display: "none",
   },
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
-    color: "white",
-    background:"linear-gradient(117.76deg, rgba(255, 255, 255, 0.7) -7.21%, rgba(255, 255, 255, 0.5) 118.08%)",
-    backdropFilter:"blur(8px)",
+    background: theme.palette.glass.main,
+    backdropFilter: "blur(8px)",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -93,10 +117,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.only("sm")]: {
       marginTop: theme.spacing(0.625),
     },
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
+
   },
+  // uiPage:{
+  //   padding:theme.spacing(2),
+  // }
 }));
 
 function Sidebar(props) {
@@ -115,54 +140,116 @@ function Sidebar(props) {
   });
   return (
     <Drawer
-      variant={drawerPermanent ? "permanent" : "temporary"}
+      variant="permanent"
       classes={{
         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
       }}
       open={open}
     >
-      <div className={classes.drawerToolbar} />
-      <div className={classes.drawerBackButton}>
-        <IconButton onClick={() => toggleSidebar()}>
-          <ArrowBackIcon
-            classes={{
-              root: clsx(classes.headerIcon, classes.headerIconCollapse),
-            }}
-          />
+      <div className={classes.drawerToolbar}>
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
+          onClick={() => toggleSidebar()}
+        >
+          <MenuIcon />
         </IconButton>
+        <Typography variant="h4" className={classes.title}>
+          Site Title
+        </Typography>
       </div>
-      <Divider />
+
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Customers" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Reports" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LayersIcon />
-          </ListItemIcon>
-          <ListItemText primary="Integrations" />
-        </ListItem>
+        <Link to="/app/Dashboard">
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+        </Link>
+
+        <Link to="/app/Order">
+          <ListItem button>
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Orders" />
+          </ListItem>
+        </Link>
+
+        <Link to="/app/Menus">
+          <ListItem button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Menus" />
+          </ListItem>
+        </Link>
+
+        <Link to="/app/Customer">
+          <ListItem button>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Customer" />
+          </ListItem>
+        </Link>
+
+        <Link to="/app/Analysis">
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary="Analysis" />
+          </ListItem>
+        </Link>
+
+        <Link to="/app/OnlineStore">
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary="Online Store" />
+          </ListItem>
+        </Link>
+
+        {/* <Divider />
+        <Typography className={classes.uiPage}>
+          Ui and Pages
+        </Typography> */}
+
+        <Link to="/app/Collections">
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary="Collections" />
+          </ListItem>
+        </Link>
+
+        <Link to="/app/UiComponents">
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary="Ui & Components" />
+          </ListItem>
+        </Link>
+
+        <Link to="/app/FormsTables">
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary=" Forms & Tables" />
+          </ListItem>
+        </Link>
+
+
+
       </List>
     </Drawer>
   );

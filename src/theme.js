@@ -4,19 +4,24 @@ import { createMuiTheme } from "@material-ui/core/styles";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#556cd6",
+      main: "#fff",
     },
 
     secondary: {
-      main: "#dc004e",
+      main: "#4c95dd",
+    },
+
+    success: {
+      main: "#01b075",
     },
 
     error: {
       main: red.A400,
     },
 
-    background: {
-      default: "#fff",
+    fontColor: {
+      main: "#20304c",
+
     },
 
     inputBorderColor: {
@@ -27,11 +32,29 @@ const theme = createMuiTheme({
       main: "#d1d1d1",
     },
 
-    blackColor: {
-      main: "#000",
-    }
+
+    gradient: {
+      background: "radial-gradient(circle, rgba(238,174,202,0.6643032212885154) 0%, rgba(148,187,233,0.5998774509803921) 100%)",
+    },
+
+    glass: {
+      main: "rgba(255,255,255,0.5)",
+    },
+
+    boxShadow:{
+      boxShadow:"1px 1px 5px #888888",
+
+    },
+
+    
+
 
   },
+
+
+
+
+
   overrides: {
     // Style sheet name ⚛️
     IconButton: {
@@ -43,6 +66,12 @@ const theme = createMuiTheme({
       size: {},
     },
   },
+
+
+
+
+
+
 });
 
 export default theme;

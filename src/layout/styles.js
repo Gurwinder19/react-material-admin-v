@@ -66,6 +66,11 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     overflow: "auto",
   },
+
+  mainLayout: {
+    padding: theme.spacing(2, 2),
+  },
+
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -79,7 +84,8 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
- 
+
+
 
 }));
 
