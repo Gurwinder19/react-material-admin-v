@@ -11,30 +11,29 @@ import userImage4 from '../../../images/user4.png';
 
 
 const useStyles = makeStyles((theme) => ({
-  headerMenu: {
-    marginTop: theme.spacing(7),
 
-  },
   menuBody: {
     width: 300,
     background: theme.palette.glass.main,
     backdropFilter: "blur(8px)",
     padding: theme.spacing(3.9),
+    marginTop: theme.spacing(2.5),
+
   },
 
   iconButton: {
     marginLeft: theme.spacing(2),
     padding: 5,
     boxShadow: theme.palette.boxShadow.boxShadow,
-    borderRadius:10,
-    overflow:"hidden",
+    borderRadius: 10,
+    overflow: "hidden",
   },
   profileImg: {
     width: 40,
     height: 40,
-    borderRadius:10,
-   
-    
+    borderRadius: 10,
+
+
   },
 }));
 
@@ -45,6 +44,7 @@ export default function UserProfileMenu() {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = (event) => {
     setAnchorEl(null);
   };
@@ -59,19 +59,19 @@ export default function UserProfileMenu() {
         className={classes.iconButton}
         size="medium"
       >
-      
-          <img
+
+        <img
           className={classes.profileImg}
-            src={userImage3}
-            alt="img"
-            width="50px"
-          />
+          src={userImage3}
+          alt="img"
+          width="50px"
+        />
       </IconButton>
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: "top",
+          vertical: "bottom",
           horizontal: "right",
         }}
         keepMounted

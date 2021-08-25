@@ -1,5 +1,9 @@
-import React from "react";
+import React from 'react'
 
 export default function Order() {
-  return <h1>Order component</h1>;
+  return (
+    <div>
+      
+    </div>
+  )
 }

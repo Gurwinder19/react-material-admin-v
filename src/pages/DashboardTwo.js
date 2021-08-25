@@ -4,6 +4,7 @@ import ProgressCard from "../components/cards/ProgressCard";
 import BarCharts from "../components/charts/BarCharts";
 import CrazyChart from "../components/charts/CrazyChart";
 import PieChart from "../components/charts/PieChart";
+// import RadarChart from "../components/charts/Radar";
 import SimpleSlider from '../components/mainSlider';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,10 +14,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Dashboard() {
+export default function DashboardTwo() {
   var classes = useStyles();
   return (
     <>
+      <SimpleSlider />
+
       <Grid container justify={"center"} spacing={2}>
 
         <Grid item className={classes.gridItems} md={6}>
@@ -27,8 +30,6 @@ export default function Dashboard() {
           <ProgressCard />
         </Grid>
       </Grid>
-
-      <SimpleSlider />
 
       <Grid container justify={"center"} spacing={2}>
 
@@ -41,8 +42,6 @@ export default function Dashboard() {
         </Grid>
 
       </Grid>
-
-     
 
     </>
   );
